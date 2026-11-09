@@ -1,0 +1,302 @@
+[
+  {
+    "id": "app001",
+    "name": "Programming Hero",
+    "developer": "Programming Hero Ltd.",
+    "thumbnail": "https://picsum.photos/seed/proghero/400/400",
+    "banner": "https://picsum.photos/seed/proghero-b/1200/500",
+    "downloads": 3500000,
+    "category": "Education",
+    "rating": 4.8,
+    "description": "A fun and interactive way to learn programming. Whether you are a beginner or brushing up, this app makes learning to code exciting and practical.",
+    "features": ["Interactive coding lessons", "Real-world projects", "Gamified learning experience"],
+    "reviews": [
+      { "user": "coder_nadia", "rating": 5, "comment": "Best app for beginners! The lessons are super easy to follow." }
+    ]
+  },
+  {
+    "id": "app002",
+    "name": "TaskNest",
+    "developer": "Nest Labs",
+    "thumbnail": "https://picsum.photos/seed/tasknest/400/400",
+    "banner": "https://picsum.photos/seed/tasknest-b/1200/500",
+    "downloads": 2100000,
+    "category": "Productivity",
+    "rating": 4.7,
+    "description": "A clean to-do manager that turns messy lists into clear daily plans with smart reminders.",
+    "features": ["Smart reminders", "Project boards", "Sync across devices"],
+    "reviews": [
+      { "user": "rafi_dev", "rating": 5, "comment": "Simple and fast. Replaced three other apps for me." }
+    ]
+  },
+  {
+    "id": "app003",
+    "name": "FitPulse",
+    "developer": "PulseWorks",
+    "thumbnail": "https://picsum.photos/seed/fitpulse/400/400",
+    "banner": "https://picsum.photos/seed/fitpulse-b/1200/500",
+    "downloads": 4200000,
+    "category": "Healthcare",
+    "rating": 4.9,
+    "description": "Track workouts, steps and heart rate with guided plans for every fitness level.",
+    "features": ["Heart rate tracking", "Guided workout plans", "Weekly progress reports"],
+    "reviews": [
+      { "user": "mim_runs", "rating": 5, "comment": "The weekly reports keep me motivated every single week." }
+    ]
+  },
+  {
+    "id": "app004",
+    "name": "FocusFlow",
+    "developer": "DeepWork Studio",
+    "thumbnail": "https://picsum.photos/seed/focusflow/400/400",
+    "banner": "https://picsum.photos/seed/focusflow-b/1200/500",
+    "downloads": 1800000,
+    "category": "Productivity",
+    "rating": 4.6,
+    "description": "A Pomodoro-style focus timer with ambient sounds and distraction blocking.",
+    "features": ["Focus timer", "Ambient sounds", "Daily focus stats"],
+    "reviews": [
+      { "user": "sara_study", "rating": 4, "comment": "Great for exam season. The sounds are really calming." }
+    ]
+  },
+  {
+    "id": "app005",
+    "name": "LingoLeap",
+    "developer": "Leap Education",
+    "thumbnail": "https://picsum.photos/seed/lingoleap/400/400",
+    "banner": "https://picsum.photos/seed/lingoleap-b/1200/500",
+    "downloads": 5200000,
+    "category": "Education",
+    "rating": 4.7,
+    "description": "Learn a new language in five minutes a day with bite-sized lessons and speaking practice.",
+    "features": ["Bite-sized lessons", "Speech practice", "Streak rewards"],
+    "reviews": [
+      { "user": "tanvir_91", "rating": 5, "comment": "Picked up basic Japanese in two months." }
+    ]
+  },
+  {
+    "id": "app006",
+    "name": "MediTrack",
+    "developer": "CareLoop Health",
+    "thumbnail": "https://picsum.photos/seed/meditrack/400/400",
+    "banner": "https://picsum.photos/seed/meditrack-b/1200/500",
+    "downloads": 950000,
+    "category": "Healthcare",
+    "rating": 4.5,
+    "description": "Never miss a dose. Schedule medicines, get reminders and share reports with your doctor.",
+    "features": ["Dose reminders", "Refill alerts", "Shareable reports"],
+    "reviews": [
+      { "user": "nilu_care", "rating": 5, "comment": "Helped my grandfather stay on schedule." }
+    ]
+  },
+  {
+    "id": "app007",
+    "name": "NoteWave",
+    "developer": "Wave Apps",
+    "thumbnail": "https://picsum.photos/seed/notewave/400/400",
+    "banner": "https://picsum.photos/seed/notewave-b/1200/500",
+    "downloads": 2800000,
+    "category": "Productivity",
+    "rating": 4.4,
+    "description": "Fast note taking with folders, tags, voice memos and powerful search.",
+    "features": ["Voice memos", "Tag organisation", "Instant search"],
+    "reviews": [
+      { "user": "arif_notes", "rating": 4, "comment": "Search is lightning fast." }
+    ]
+  },
+  {
+    "id": "app008",
+    "name": "MathMentor",
+    "developer": "Brainy Bits",
+    "thumbnail": "https://picsum.photos/seed/mathmentor/400/400",
+    "banner": "https://picsum.photos/seed/mathmentor-b/1200/500",
+    "downloads": 1600000,
+    "category": "Education",
+    "rating": 4.6,
+    "description": "Scan a problem and get step-by-step solutions that explain the why, not just the answer.",
+    "features": ["Photo problem solving", "Step-by-step hints", "Practice quizzes"],
+    "reviews": [
+      { "user": "ayesha_m", "rating": 5, "comment": "Finally maths makes sense to me." }
+    ]
+  },
+  {
+    "id": "app009",
+    "name": "SleepWell",
+    "developer": "Dream Labs",
+    "thumbnail": "https://picsum.photos/seed/sleepwell/400/400",
+    "banner": "https://picsum.photos/seed/sleepwell-b/1200/500",
+    "downloads": 2300000,
+    "category": "Healthcare",
+    "rating": 4.6,
+    "description": "Understand your sleep patterns and wake up refreshed with a smart alarm and bedtime stories.",
+    "features": ["Sleep analysis", "Smart alarm", "Bedtime stories"],
+    "reviews": [
+      { "user": "night_owl", "rating": 4, "comment": "My sleep score went up in a week." }
+    ]
+  },
+  {
+    "id": "app010",
+    "name": "CalendarPro",
+    "developer": "Plan & Co.",
+    "thumbnail": "https://picsum.photos/seed/calendarpro/400/400",
+    "banner": "https://picsum.photos/seed/calendarpro-b/1200/500",
+    "downloads": 3100000,
+    "category": "Productivity",
+    "rating": 4.5,
+    "description": "One calendar for work, study and life, with natural language event creation.",
+    "features": ["Natural language input", "Shared calendars", "Travel time alerts"],
+    "reviews": [
+      { "user": "mehedi_k", "rating": 5, "comment": "Typing 'lunch tomorrow 1pm' just works." }
+    ]
+  },
+  {
+    "id": "app011",
+    "name": "QuizBlitz",
+    "developer": "Blitz Games Edu",
+    "thumbnail": "https://picsum.photos/seed/quizblitz/400/400",
+    "banner": "https://picsum.photos/seed/quizblitz-b/1200/500",
+    "downloads": 1250000,
+    "category": "Education",
+    "rating": 4.3,
+    "description": "Challenge friends in fast quiz battles across science, history and general knowledge.",
+    "features": ["Multiplayer battles", "Daily challenges", "Topic leaderboards"],
+    "reviews": [
+      { "user": "quiz_king", "rating": 4, "comment": "Super addictive with friends." }
+    ]
+  },
+  {
+    "id": "app012",
+    "name": "Calmly",
+    "developer": "Still Mind Inc.",
+    "thumbnail": "https://picsum.photos/seed/calmly/400/400",
+    "banner": "https://picsum.photos/seed/calmly-b/1200/500",
+    "downloads": 3900000,
+    "category": "Healthcare",
+    "rating": 4.8,
+    "description": "Guided meditation and breathing exercises to reduce stress in just a few minutes.",
+    "features": ["Guided meditation", "Breathing exercises", "Mood journal"],
+    "reviews": [
+      { "user": "peace_seeker", "rating": 5, "comment": "Ten minutes a day changed my mornings." }
+    ]
+  },
+  {
+    "id": "app013",
+    "name": "MailMint",
+    "developer": "Mint Software",
+    "thumbnail": "https://picsum.photos/seed/mailmint/400/400",
+    "banner": "https://picsum.photos/seed/mailmint-b/1200/500",
+    "downloads": 1400000,
+    "category": "Productivity",
+    "rating": 4.2,
+    "description": "A tidy inbox that sorts newsletters, bills and personal mail automatically.",
+    "features": ["Auto sorting", "Snooze emails", "Unsubscribe in one tap"],
+    "reviews": [
+      { "user": "inbox_zero", "rating": 4, "comment": "Inbox zero is finally realistic." }
+    ]
+  },
+  {
+    "id": "app014",
+    "name": "BookBuddy",
+    "developer": "Page Turner Ltd.",
+    "thumbnail": "https://picsum.photos/seed/bookbuddy/400/400",
+    "banner": "https://picsum.photos/seed/bookbuddy-b/1200/500",
+    "downloads": 2000000,
+    "category": "Education",
+    "rating": 4.4,
+    "description": "A digital library with summaries, audio versions and reading goals.",
+    "features": ["Audio summaries", "Reading goals", "Offline reading"],
+    "reviews": [
+      { "user": "bookworm_r", "rating": 5, "comment": "The audio summaries are perfect for commuting." }
+    ]
+  },
+  {
+    "id": "app015",
+    "name": "HydroHabit",
+    "developer": "Aqua Health",
+    "thumbnail": "https://picsum.photos/seed/hydrohabit/400/400",
+    "banner": "https://picsum.photos/seed/hydrohabit-b/1200/500",
+    "downloads": 780000,
+    "category": "Healthcare",
+    "rating": 4.1,
+    "description": "Build a healthy water drinking habit with friendly reminders and daily goals.",
+    "features": ["Custom daily goals", "Friendly reminders", "Streak tracking"],
+    "reviews": [
+      { "user": "sip_more", "rating": 4, "comment": "Simple, cute and it works." }
+    ]
+  },
+  {
+    "id": "app016",
+    "name": "DocuScan",
+    "developer": "ScanWorks",
+    "thumbnail": "https://picsum.photos/seed/docuscan/400/400",
+    "banner": "https://picsum.photos/seed/docuscan-b/1200/500",
+    "downloads": 2600000,
+    "category": "Productivity",
+    "rating": 4.6,
+    "description": "Turn your phone into a scanner. Capture, crop, sign and share documents in seconds.",
+    "features": ["Auto edge detection", "Text recognition", "PDF export"],
+    "reviews": [
+      { "user": "office_ali", "rating": 5, "comment": "Scans are crisp, even in poor light." }
+    ]
+  },
+  {
+    "id": "app017",
+    "name": "ScienceLab",
+    "developer": "Curio Kids",
+    "thumbnail": "https://picsum.photos/seed/sciencelab/400/400",
+    "banner": "https://picsum.photos/seed/sciencelab-b/1200/500",
+    "downloads": 890000,
+    "category": "Education",
+    "rating": 4.5,
+    "description": "Virtual experiments in physics, chemistry and biology that students can run safely anywhere.",
+    "features": ["Virtual experiments", "3D models", "Lab reports"],
+    "reviews": [
+      { "user": "teacher_lina", "rating": 5, "comment": "My class loves the chemistry experiments." }
+    ]
+  },
+  {
+    "id": "app018",
+    "name": "NutriScan",
+    "developer": "GoodPlate",
+    "thumbnail": "https://picsum.photos/seed/nutriscan/400/400",
+    "banner": "https://picsum.photos/seed/nutriscan-b/1200/500",
+    "downloads": 1700000,
+    "category": "Healthcare",
+    "rating": 4.4,
+    "description": "Scan food labels to see calories, allergens and healthier alternatives instantly.",
+    "features": ["Barcode scanning", "Allergen alerts", "Healthier swaps"],
+    "reviews": [
+      { "user": "eat_smart", "rating": 4, "comment": "The allergen alerts are a lifesaver." }
+    ]
+  },
+  {
+    "id": "app019",
+    "name": "TimeBlock",
+    "developer": "Nest Labs",
+    "thumbnail": "https://picsum.photos/seed/timeblock/400/400",
+    "banner": "https://picsum.photos/seed/timeblock-b/1200/500",
+    "downloads": 650000,
+    "category": "Productivity",
+    "rating": 4.3,
+    "description": "Plan your day in visual time blocks and see exactly where your hours go.",
+    "features": ["Drag and drop blocks", "Daily review", "Weekly insights"],
+    "reviews": [
+      { "user": "planner_jo", "rating": 4, "comment": "Seeing my day as blocks helps a lot." }
+    ]
+  },
+  {
+    "id": "app020",
+    "name": "CodeCamp Jr",
+    "developer": "Programming Hero Ltd.",
+    "thumbnail": "https://picsum.photos/seed/codecampjr/400/400",
+    "banner": "https://picsum.photos/seed/codecampjr-b/1200/500",
+    "downloads": 540000,
+    "category": "Education",
+    "rating": 4.2,
+    "description": "Block-based coding adventures that teach kids the basics of logic and programming.",
+    "features": ["Block coding", "Story missions", "Parent dashboard"],
+    "reviews": [
+      { "user": "parent_sumi", "rating": 4, "comment": "My son asks to play it every evening." }
+    ]
+  }
+]

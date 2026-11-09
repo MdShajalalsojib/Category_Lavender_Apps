@@ -19,7 +19,6 @@ const ErrorPage = () => {
                         <FaExclamationTriangle className="text-4xl text-violet-600" />
                     </div>
                 </div>
-
                 {/* 404 Number */}
                 <h1 className="text-8xl md:text-9xl font-extrabold text-violet-600 tracking-wider">
                     404
@@ -40,13 +39,7 @@ const ErrorPage = () => {
                 {/* Buttons */}
                 <div className="flex flex-col sm:flex-row justify-center gap-4">
 
-                    <Link
-                        to="/"
-                        className="flex items-center justify-center gap-3 bg-violet-600 hover:bg-violet-800 text-white px-7 py-3.5 rounded-xl font-semibold shadow-md hover:shadow-lg transition duration-300"
-                    >
-                        <FaHome />
-                        Back to Home
-                    </Link>
+                    
 
                     <button
                         onClick={() => window.history.back()}

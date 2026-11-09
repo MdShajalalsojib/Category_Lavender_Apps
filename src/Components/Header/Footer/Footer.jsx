@@ -1,176 +1,328 @@
-
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router";
 import {
-    FaLeaf,
-    FaHome,
-    FaEnvelope,
-    FaBriefcase,
-    FaNewspaper,
-    FaTwitter,
-    FaYoutube,
-    FaFacebookF,
-    FaGithub,
-    FaArrowRight
+  FaLeaf,
+  FaHome,
+  FaEnvelope,
+  FaAppStore,
+  FaUser,
+  FaSignInAlt,
+  FaShieldAlt,
+  FaFileContract,
+  FaCode,
+  FaTwitter,
+  FaYoutube,
+  FaFacebookF,
+  FaGithub,
+  FaArrowRight,
+  FaPaperPlane,
+  FaHeart,
+  FaExternalLinkAlt,
 } from "react-icons/fa";
 
 const Footer = () => {
-    return (
-        <footer className="bg-gradient-to-br from-violet-100 via-white to-purple-100 text-gray-700 pt-16">
+  const [email, setEmail] = useState("");
+  const [subscribed, setSubscribed] = useState(false);
 
-            <div className="max-w-7xl mx-auto px-6">
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    if (!email.trim()) return;
 
-                <div className="bg-white rounded-3xl shadow-xl border border-purple-100 p-8 md:p-12">
+    setSubscribed(true);
+    setEmail("");
+    setTimeout(() => setSubscribed(false), 3000);
+  };
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+  // Social media (external links)
+  const socialLinks = [
+    { icon: <FaFacebookF />, link: "https://www.facebook.com/share/194z9YXrfs/", label: "Facebook" },
+    { icon: <FaTwitter />, link: "https://twitter.com", label: "Twitter" },
+    { icon: <FaYoutube />, link: "https://youtube.com", label: "YouTube" },
+    { icon: <FaGithub />, link: "https://github.com/MdShajalalsojib", label: "GitHub" },
+  ];
 
-                        {/* Logo & Description */}
-                        <div>
-                            <div className="flex items-center gap-3 mb-5">
-                                <div className="bg-purple-100 p-3 rounded-2xl">
-                                    <FaLeaf className="text-3xl text-purple-600" />
-                                </div>
+  // Internal links (only pages that exist in your router)
+  const quickLinks = [
+    { name: "Home", path: "/", icon: <FaHome /> },
+    { name: "Explore Apps", path: "/apps", icon: <FaAppStore /> },
+    { name: "My Profile", path: "/myprofile", icon: <FaUser /> },
+    { name: "Login", path: "/login", icon: <FaSignInAlt /> },
+  ];
 
-                                <h2 className="text-3xl font-extrabold text-purple-950">
-                                    ACME
-                                </h2>
-                            </div>
+  const categories = [
+    { name: "Productivity Apps", path: "/apps" },
+    { name: "Healthcare Apps", path: "/apps" },
+    { name: "Education Apps", path: "/apps" },
+    { name: "Trending Apps", path: "/apps" },
+  ];
 
-                            <p className="text-gray-500 leading-7">
-                                Innovating a Better Tomorrow. Building a smarter,
-                                greener and more connected world through creativity
-                                and technology.
-                            </p>
+  // External links required by the assignment
+  // (replace these URLs with your own pages if you have them)
+  const legalLinks = [
+    {
+      name: "Terms of Service",
+      href: "https://policies.google.com/terms",
+      icon: <FaFileContract />,
+    },
+    {
+      name: "Privacy Policy",
+      href: "https://policies.google.com/privacy",
+      icon: <FaShieldAlt />,
+    },
+    {
+      name: "Developer Resources",
+      href: "https://developer.android.com",
+      icon: <FaCode />,
+    },
+    {
+      name: "Contact Support",
+      href: "mailto:support@appstore.com",
+      icon: <FaEnvelope />,
+      mail: true,
+    },
+  ];
 
-                            <div className="flex gap-3 mt-6">
-                                <a href="https://twitter.com" target="_blank" rel="noreferrer"
-                                    className="w-10 h-10 flex items-center justify-center rounded-full bg-purple-100 text-purple-700 hover:bg-purple-600 hover:text-white transition">
-                                    <FaTwitter />
-                                </a>
+  const linkClass =
+    "group flex items-center gap-3 text-sm text-emerald-100/80 transition hover:translate-x-1 hover:text-yellow-300 motion-reduce:transition-none";
 
-                                <a href="https://youtube.com" target="_blank" rel="noreferrer"
-                                    className="w-10 h-10 flex items-center justify-center rounded-full bg-purple-100 text-purple-700 hover:bg-purple-600 hover:text-white transition">
-                                    <FaYoutube />
-                                </a>
+  return (
+    <footer className="relative overflow-hidden bg-gradient-to-br from-emerald-950 via-emerald-900 to-teal-950 text-white">
+      {/* Background decorations */}
+      <div className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-emerald-400/10 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-32 -left-32 h-96 w-96 rounded-full bg-teal-400/10 blur-3xl" />
 
-                                <a href="https://facebook.com" target="_blank" rel="noreferrer"
-                                    className="w-10 h-10 flex items-center justify-center rounded-full bg-purple-100 text-purple-700 hover:bg-purple-600 hover:text-white transition">
-                                    <FaFacebookF />
-                                </a>
+      <div className="relative mx-auto max-w-7xl px-5 pt-16 sm:px-8 lg:px-10">
+        {/* Newsletter banner */}
+        <div className="relative mb-16 overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.07] p-7 shadow-2xl backdrop-blur-md sm:p-10">
+          <div className="absolute -right-10 -top-16 h-52 w-52 rounded-full bg-yellow-300/10 blur-3xl" />
 
-                                <a href="https://github.com" target="_blank" rel="noreferrer"
-                                    className="w-10 h-10 flex items-center justify-center rounded-full bg-purple-100 text-purple-700 hover:bg-purple-600 hover:text-white transition">
-                                    <FaGithub />
-                                </a>
-                            </div>
-                        </div>
+          <div className="relative z-10 flex flex-col items-center justify-between gap-8 lg:flex-row">
+            <div className="max-w-xl text-center lg:text-left">
+              <span className="inline-flex items-center gap-2 rounded-full border border-yellow-300/20 bg-yellow-300/10 px-4 py-2 text-xs font-bold uppercase tracking-widest text-yellow-300">
+                <FaPaperPlane />
+                Stay Updated
+              </span>
 
-                        {/* Quick Links */}
-                        <div>
-                            <h3 className="text-xl font-bold text-purple-950 mb-6">
-                                Quick Links
-                            </h3>
+              <h2 className="mt-5 text-3xl font-black leading-tight sm:text-4xl">
+                Get the Latest
+                <span className="text-yellow-300"> App Updates.</span>
+              </h2>
 
-                            <div className="w-12 h-1 bg-purple-600 rounded-full mb-6"></div>
-
-                            <ul className="space-y-4">
-                                <li>
-                                    <a href="/" className="flex items-center gap-3 hover:text-purple-600 transition">
-                                        <FaHome className="text-purple-600" /> Home
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="/about" className="flex items-center gap-3 hover:text-purple-600 transition">
-                                        <FaLeaf className="text-purple-600" /> About Us
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="/contact" className="flex items-center gap-3 hover:text-purple-600 transition">
-                                        <FaEnvelope className="text-purple-600" /> Contact
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="/jobs" className="flex items-center gap-3 hover:text-purple-600 transition">
-                                        <FaBriefcase className="text-purple-600" /> Careers
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-
-                        {/* Services */}
-                        <div>
-                            <h3 className="text-xl font-bold text-purple-950 mb-6">
-                                Our Services
-                            </h3>
-
-                            <div className="w-12 h-1 bg-purple-600 rounded-full mb-6"></div>
-
-                            <ul className="space-y-4">
-                                <li><a href="/web-design" className="hover:text-purple-600 transition">Web Design</a></li>
-                                <li><a href="/development" className="hover:text-purple-600 transition">Web Development</a></li>
-                                <li><a href="/ui-design" className="hover:text-purple-600 transition">UI/UX Design</a></li>
-                                <li><a href="/support" className="hover:text-purple-600 transition">Technical Support</a></li>
-                            </ul>
-                        </div>
-
-                        {/* Newsletter */}
-                        <div>
-                            <h3 className="text-xl font-bold text-purple-950 mb-6">
-                                Stay Connected
-                            </h3>
-
-                            <div className="w-12 h-1 bg-purple-600 rounded-full mb-6"></div>
-
-                            <p className="text-gray-500 leading-7 mb-5">
-                                Subscribe to our newsletter to get the latest updates.
-                            </p>
-
-                            <form onSubmit={(e) => e.preventDefault()} className="flex items-center border border-purple-200 rounded-xl overflow-hidden bg-purple-50">
-                                <input
-                                    type="email"
-                                    placeholder="Your email address"
-                                    className="w-full px-4 py-3 bg-transparent outline-none min-w-0"
-                                />
-
-                                <button type="submit" className="bg-purple-600 text-white px-4 py-4 hover:bg-purple-800 transition">
-                                    <FaArrowRight />
-                                </button>
-                            </form>
-                        </div>
-
-                    </div>
-
-                    {/* Bottom Section */}
-                    <div className="border-t border-purple-100 mt-12 pt-7 flex flex-col md:flex-row items-center justify-between gap-4">
-
-                        <p className="text-sm text-gray-500 text-center">
-                            © {new Date().getFullYear()} ACME Industries Ltd. All rights reserved.
-                        </p>
-
-                        <div className="flex gap-6 text-sm">
-                            <a href="/privacy" className="hover:text-purple-600 transition">
-                                Privacy Policy
-                            </a>
-
-                            <a href="/terms" className="hover:text-purple-600 transition">
-                                Terms & Conditions
-                            </a>
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div className="text-center py-6 text-sm text-purple-800">
-                    Made with care for a better tomorrow.
-                </div>
-
+              <p className="mt-3 leading-7 text-emerald-100">
+                Subscribe to our newsletter and discover new applications,
+                exciting features, and the latest technology updates.
+              </p>
             </div>
-        </footer>
-    );
+
+            <div className="w-full max-w-md">
+              <form
+                onSubmit={handleSubscribe}
+                className="flex flex-col gap-3 sm:flex-row"
+              >
+                <label htmlFor="footer-email" className="sr-only">
+                  Email address
+                </label>
+                <input
+                  id="footer-email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email address"
+                  required
+                  className="min-w-0 flex-1 rounded-xl border border-white/20 bg-white/10 px-5 py-4 text-sm text-white outline-none placeholder:text-emerald-200 focus:border-yellow-300 focus:ring-2 focus:ring-yellow-300/20"
+                />
+
+                <button
+                  type="submit"
+                  className="flex items-center justify-center gap-2 rounded-xl bg-yellow-300 px-6 py-4 font-extrabold text-emerald-950 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-yellow-200 motion-reduce:transition-none"
+                >
+                  Subscribe
+                  <FaArrowRight />
+                </button>
+              </form>
+
+              <p
+                aria-live="polite"
+                className={`mt-3 text-sm font-semibold text-yellow-300 transition-opacity ${
+                  subscribed ? "opacity-100" : "opacity-0"
+                }`}
+              >
+                Thank you for subscribing!
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Main footer */}
+        <div className="grid grid-cols-1 gap-12 border-b border-white/10 pb-14 sm:grid-cols-2 lg:grid-cols-5 lg:gap-10">
+          {/* Brand */}
+          <div className="lg:col-span-2">
+            <Link to="/" className="inline-flex items-center gap-3">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-yellow-300 text-3xl text-emerald-950 shadow-lg">
+                <FaLeaf />
+              </div>
+
+              <div>
+                <h2 className="text-3xl font-black tracking-tight">
+                  App<span className="text-yellow-300">Store</span>
+                </h2>
+                <p className="text-xs font-medium tracking-[0.2em] text-emerald-200">
+                  DISCOVER MORE
+                </p>
+              </div>
+            </Link>
+
+            <p className="mt-6 max-w-sm text-sm leading-7 text-emerald-100/80">
+              Your ultimate destination for discovering amazing applications.
+              Explore productivity, healthcare, and educational apps designed
+              to make your digital life better.
+            </p>
+
+            {/* Social media */}
+            <div className="mt-7">
+              <h3 className="mb-4 text-sm font-bold uppercase tracking-widest text-yellow-300">
+                Follow Our Community
+              </h3>
+
+              <div className="flex flex-wrap gap-3">
+                {socialLinks.map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${social.label} (opens in a new tab)`}
+                    className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/10 text-lg text-white transition-all duration-300 hover:-translate-y-1 hover:border-yellow-300 hover:bg-yellow-300 hover:text-emerald-950 motion-reduce:transition-none"
+                  >
+                    {social.icon}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Quick links */}
+          <div>
+            <h3 className="mb-6 text-lg font-extrabold text-white">
+              Quick Links
+            </h3>
+            <div className="mb-6 h-1 w-12 rounded-full bg-yellow-300" />
+
+            <ul className="space-y-4">
+              {quickLinks.map((item) => (
+                <li key={item.name}>
+                  <Link to={item.path} className={linkClass}>
+                    <span className="text-emerald-300 transition group-hover:text-yellow-300">
+                      {item.icon}
+                    </span>
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Categories */}
+          <div>
+            <h3 className="mb-6 text-lg font-extrabold text-white">
+              Categories
+            </h3>
+            <div className="mb-6 h-1 w-12 rounded-full bg-yellow-300" />
+
+            <ul className="space-y-4">
+              {categories.map((item) => (
+                <li key={item.name}>
+                  <Link to={item.path} className={linkClass}>
+                    <FaArrowRight className="text-xs text-emerald-300 transition group-hover:text-yellow-300" />
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Legal and resources (external links) */}
+          <div>
+            <h3 className="mb-6 text-lg font-extrabold text-white">
+              Legal &amp; Resources
+            </h3>
+            <div className="mb-6 h-1 w-12 rounded-full bg-yellow-300" />
+
+            <ul className="space-y-4">
+              {legalLinks.map((item) => (
+                <li key={item.name}>
+                  <a
+                    href={item.href}
+                    {...(item.mail
+                      ? {}
+                      : { target: "_blank", rel: "noopener noreferrer" })}
+                    className={linkClass}
+                  >
+                    <span className="text-emerald-300 transition group-hover:text-yellow-300">
+                      {item.icon}
+                    </span>
+                    {item.name}
+                    {!item.mail && (
+                      <FaExternalLinkAlt
+                        aria-hidden="true"
+                        className="text-[10px] opacity-60"
+                      />
+                    )}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* Footer bottom */}
+        <div className="flex flex-col items-center justify-between gap-5 py-7 text-center sm:flex-row sm:text-left">
+          <p className="text-sm text-emerald-100/70">
+            © {new Date().getFullYear()} AppStore. All rights reserved.
+          </p>
+
+          <div className="flex flex-wrap items-center justify-center gap-5 text-sm text-emerald-100/70">
+            <a
+              href="https://policies.google.com/privacy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition hover:text-yellow-300"
+            >
+              Privacy Policy
+            </a>
+
+            <span className="h-4 w-px bg-white/20" />
+
+            <a
+              href="https://policies.google.com/terms"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition hover:text-yellow-300"
+            >
+              Terms of Service
+            </a>
+
+            <span className="h-4 w-px bg-white/20" />
+
+            <a
+              href="https://developer.android.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition hover:text-yellow-300"
+            >
+              Developer Resources
+            </a>
+          </div>
+
+          <p className="flex items-center gap-2 text-sm text-emerald-100/70">
+            Made with
+            <FaHeart className="text-red-400" aria-hidden="true" />
+            for app lovers.
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
 };
 
 export default Footer;
-

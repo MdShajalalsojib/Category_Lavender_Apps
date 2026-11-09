@@ -4,8 +4,9 @@ import Root from "../Pages/Root/Root";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Home from "../Pages/Home/Home";
 import Apps from "../Pages/Apps/Apps";
-import MyProfile from "../Pages/MyProfile/MyProfile";
 import Login from "../Pages/Login/Login";
+import AppDetails from "../Pages/Apps/AppDetails";
+import MyProfile from "../Pages/MyProfile/MyProfile"
 
 
 export const router = createBrowserRouter([
@@ -24,13 +25,19 @@ export const router = createBrowserRouter([
           Component:Apps
         },
         {
-          path:"MyProfile",
-          Component:MyProfile
+           path:"myprofile",
+           Component:MyProfile
         },
         {
           path:"login",
           Component:Login
-        }
+        },
+        {
+        path: "/apps/:id",
+        element: <AppDetails />,
+        },
+        
+         
       ]
   },
 ]);
