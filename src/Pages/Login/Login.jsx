@@ -1,204 +1,250 @@
+ 
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router-dom";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { auth } from "../../Firebase/Firebase.init";
 
-const Login = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [remember, setRemember] = useState(false);
+import {
+  FiLogIn,
+  FiLogOut,
+  FiMenu,
+  FiX,
+  FiUser,
+} from "react-icons/fi";
+import { HiOutlineSparkles } from "react-icons/hi2";
 
+const Navbar = () => {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  // Firebase authentication state
   useEffect(() => {
-    document.title = "Login | AppStore";
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
   }, []);
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-
-    // Connect your Firebase authentication here.
-    console.log({ email, password, remember });
+  // Logout
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      setUser(null);
+      setMenuOpen(false);
+    } catch (error) {
+      console.error("Logout Error:", error.message);
+    }
   };
 
+  const navLinks = [
+    { name: "Home", path: "/" },
+    { name: "Apps", path: "/apps" },
+    { name: "My Profile", path: "/my-profile" },
+  ];
+
+  const linkStyle = ({ isActive }) =>
+    `px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
+      isActive
+        ? "bg-blue-600 text-white shadow-md shadow-blue-500/20"
+        : "text-gray-600 hover:text-blue-600 hover:bg-blue-50"
+    }`;
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-emerald-50 via-white to-green-100 px-4 py-10">
-      <div className="grid w-full max-w-5xl overflow-hidden rounded-[2rem] bg-white shadow-2xl md:grid-cols-2">
-        {/* Left Side */}
-        <div className="relative hidden flex-col justify-between overflow-hidden bg-gradient-to-br from-emerald-950 via-emerald-800 to-teal-700 p-10 text-white md:flex">
-          <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-yellow-300/10 blur-3xl" />
-          <div className="absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-emerald-300/10 blur-3xl" />
+    <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-gray-100 shadow-sm">
 
-          <div className="relative z-10">
-            <Link to="/" className="flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-yellow-300 text-2xl font-black text-emerald-950">
-                A
-              </div>
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-              <span className="text-2xl font-black">AppStore</span>
-            </Link>
-          </div>
+        <div className="h-20 flex items-center justify-between">
 
-          <div className="relative z-10 my-12">
-            <div className="mb-6 flex h-24 w-24 items-center justify-center rounded-3xl border border-white/20 bg-white/10 text-6xl shadow-xl backdrop-blur-lg">
-              📱
+          {/* Logo */}
+          <Link to="/" className="flex items-center gap-2 group">
+
+            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition">
+              <HiOutlineSparkles className="text-white text-2xl" />
             </div>
 
-            <h1 className="text-4xl font-black leading-tight">
-              Discover Apps.
-              <span className="block text-yellow-300">Explore More.</span>
-            </h1>
-
-            <p className="mt-5 max-w-sm leading-7 text-emerald-100">
-              Welcome to your favorite app destination. Discover amazing
-              applications and make your digital experience better.
-            </p>
-
-            <div className="mt-8 flex items-center gap-3">
-              <span className="h-2 w-10 rounded-full bg-yellow-300" />
-              <span className="h-2 w-2 rounded-full bg-white/40" />
-              <span className="h-2 w-2 rounded-full bg-white/40" />
-            </div>
-          </div>
-
-          <div className="relative z-10 border-t border-white/20 pt-5 text-sm text-emerald-100">
-            © 2026 AppStore. All rights reserved.
-          </div>
-        </div>
-
-        {/* Right Side - Login Form */}
-        <div className="flex items-center justify-center p-6 sm:p-10 lg:p-14">
-          <div className="w-full max-w-md">
-            {/* Mobile Logo */}
-            <Link to="/" className="mb-10 flex items-center gap-3 md:hidden">
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-800 text-xl font-black text-white">
-                A
-              </div>
-
-              <span className="text-2xl font-black text-emerald-950">
-                AppStore
-              </span>
-            </Link>
-
-            <div className="mb-8">
-              <span className="text-sm font-bold uppercase tracking-widest text-emerald-600">
-                Welcome Back
-              </span>
-
-              <h2 className="mt-3 text-3xl font-black text-emerald-950 sm:text-4xl">
-                Login to Your Account
-              </h2>
-
-              <p className="mt-3 text-sm leading-6 text-gray-500">
-                Please enter your details to access your account.
+            <div>
+              <h1 className="text-2xl font-extrabold tracking-tight text-gray-900">
+                App<span className="text-blue-600">Zone</span>
+              </h1>
+              <p className="text-[10px] text-gray-400 font-semibold tracking-[2px]">
+                DISCOVER YOUR APPS
               </p>
             </div>
 
-            <form onSubmit={handleLogin} className="space-y-5">
-              {/* Email */}
-              <div>
-                <label className="mb-2 block text-sm font-bold text-gray-700">
-                  Email Address
-                </label>
+          </Link>
 
-                <div className="flex items-center rounded-xl border border-gray-200 bg-gray-50 px-4 transition focus-within:border-emerald-600 focus-within:ring-2 focus-within:ring-emerald-100">
-                  <span className="mr-3 text-lg text-emerald-700">✉</span>
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-2 bg-gray-50 p-1.5 rounded-full border border-gray-100">
+            {navLinks.map((link) => (
+              <NavLink
+                key={link.path}
+                to={link.path}
+                className={linkStyle}
+              >
+                {link.name}
+              </NavLink>
+            ))}
+          </div>
 
-                  <input
-                    type="email"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    className="w-full bg-transparent py-4 text-sm text-gray-800 outline-none"
+          {/* Right Side Authentication */}
+          <div className="hidden md:flex items-center gap-3">
+
+            {loading ? (
+              <div className="w-24 h-10 rounded-full bg-gray-100 animate-pulse"></div>
+            ) : user ? (
+
+              /* Logged In User */
+              <div className="flex items-center gap-3">
+
+                <div className="flex items-center gap-2 bg-gray-50 border border-gray-100 rounded-full pl-1.5 pr-4 py-1.5">
+
+                  <img
+                    src={
+                      user.photoURL ||
+                      "https://placehold.co/100x100?text=User"
+                    }
+                    alt="Profile"
+                    className="w-9 h-9 rounded-full object-cover border-2 border-blue-500"
                   />
+
+                  <div className="max-w-28">
+                    <p className="text-sm font-bold text-gray-800 truncate">
+                      {user.displayName || "User"}
+                    </p>
+                    <p className="text-[10px] text-green-600 font-semibold">
+                      Online
+                    </p>
+                  </div>
+
                 </div>
+
+                <button
+                  onClick={handleLogout}
+                  className="flex items-center gap-2 bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-600 hover:to-rose-700 text-white px-5 py-3 rounded-full text-sm font-bold shadow-lg shadow-red-500/20 hover:shadow-red-500/40 hover:-translate-y-0.5 transition-all duration-300"
+                >
+                  <FiLogOut className="text-lg" />
+                  Logout
+                </button>
+
               </div>
 
-              {/* Password */}
-              <div>
-                <div className="mb-2 flex items-center justify-between">
-                  <label className="text-sm font-bold text-gray-700">
-                    Password
-                  </label>
+            ) : (
 
-                  <Link
-                    to="/forgot-password"
-                    className="text-xs font-bold text-emerald-700 hover:text-emerald-950"
-                  >
-                    Forgot Password?
-                  </Link>
-                </div>
+              /* Not Logged In */
+              <Link
+                to="/login"
+                className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-3 rounded-full text-sm font-bold shadow-lg shadow-blue-500/20 hover:-translate-y-0.5 transition-all duration-300"
+              >
+                <FiLogIn className="text-lg" />
+                Login
+              </Link>
 
-                <div className="flex items-center rounded-xl border border-gray-200 bg-gray-50 px-4 transition focus-within:border-emerald-600 focus-within:ring-2 focus-within:ring-emerald-100">
-                  <span className="mr-3 text-lg text-emerald-700">🔒</span>
+            )}
 
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    placeholder="Enter your password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                    className="w-full bg-transparent py-4 text-sm text-gray-800 outline-none"
-                  />
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="md:hidden w-11 h-11 flex items-center justify-center rounded-xl bg-gray-100 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition"
+          >
+            {menuOpen ? (
+              <FiX className="text-2xl" />
+            ) : (
+              <FiMenu className="text-2xl" />
+            )}
+          </button>
+
+        </div>
+
+        {/* Mobile Menu */}
+        {menuOpen && (
+          <div className="md:hidden border-t border-gray-100 py-5 space-y-4">
+
+            <div className="flex flex-col gap-2">
+              {navLinks.map((link) => (
+                <NavLink
+                  key={link.path}
+                  to={link.path}
+                  onClick={() => setMenuOpen(false)}
+                  className={({ isActive }) =>
+                    `px-4 py-3 rounded-xl font-semibold transition ${
+                      isActive
+                        ? "bg-blue-600 text-white"
+                        : "text-gray-700 hover:bg-blue-50 hover:text-blue-600"
+                    }`
+                  }
+                >
+                  {link.name}
+                </NavLink>
+              ))}
+            </div>
+
+            <div className="border-t border-gray-100 pt-4">
+
+              {loading ? (
+                <div className="h-10 bg-gray-100 rounded-xl animate-pulse"></div>
+              ) : user ? (
+
+                <div className="space-y-3">
+
+                  <div className="flex items-center gap-3 px-3 py-2 bg-gray-50 rounded-xl">
+
+                    <img
+                      src={
+                        user.photoURL ||
+                        "https://placehold.co/100x100?text=User"
+                      }
+                      alt="Profile"
+                      className="w-12 h-12 rounded-full object-cover border-2 border-blue-500"
+                    />
+
+                    <div className="min-w-0">
+                      <h3 className="font-bold text-gray-800 truncate">
+                        {user.displayName || "User"}
+                      </h3>
+                      <p className="text-xs text-gray-500 truncate">
+                        {user.email}
+                      </p>
+                    </div>
+
+                  </div>
 
                   <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="ml-2 text-xs font-bold text-emerald-700"
+                    onClick={handleLogout}
+                    className="w-full flex items-center justify-center gap-2 bg-red-500 hover:bg-red-600 text-white py-3 rounded-xl font-bold transition"
                   >
-                    {showPassword ? "Hide" : "Show"}
+                    <FiLogOut />
+                    Logout
                   </button>
+
                 </div>
-              </div>
 
-              {/* Remember Me */}
-              <div className="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  checked={remember}
-                  onChange={(e) => setRemember(e.target.checked)}
-                  id="remember"
-                  className="h-4 w-4 accent-emerald-700"
-                />
+              ) : (
 
-                <label htmlFor="remember" className="text-sm text-gray-600">
-                  Remember me
-                </label>
-              </div>
-
-              {/* Login Button */}
-              <button
-                type="submit"
-                className="w-full rounded-xl bg-emerald-800 py-4 font-extrabold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-emerald-950 hover:shadow-xl"
-              >
-                Login to Account →
-              </button>
-            </form>
-
-            {/* Register */}
-            <div className="mt-8 text-center">
-              <p className="text-sm text-gray-500">
-                Don't have an account?
                 <Link
-                  to="/register"
-                  className="ml-1 font-extrabold text-emerald-700 hover:text-emerald-950"
+                  to="/login"
+                  onClick={() => setMenuOpen(false)}
+                  className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-xl font-bold"
                 >
-                  Create Account
+                  <FiLogIn />
+                  Login
                 </Link>
-              </p>
+
+              )}
+
             </div>
 
-            <div className="mt-8 border-t border-gray-100 pt-6 text-center">
-              <Link
-                to="/apps"
-                className="text-sm font-semibold text-gray-500 transition hover:text-emerald-700"
-              >
-                ← Continue Exploring Apps
-              </Link>
-            </div>
           </div>
-        </div>
-      </div>
-    </div>
+        )}
+
+      </nav>
+    </header>
   );
 };
 
-export default Login;
+export default Navbar;

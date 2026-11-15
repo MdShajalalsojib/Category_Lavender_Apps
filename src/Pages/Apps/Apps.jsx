@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router";
 import apps from "../../data/apps.json";
 
+
 const CATEGORIES = ["Productivity", "Healthcare", "Education"];
 
 /* ---------- App Card ---------- */
