@@ -2,6 +2,28 @@
 
 AppStore is a responsive app discovery site built with React and Vite. Browse applications by category, view app details, install apps locally, and leave reviews. Google sign-in powers the account and profile pages.
 
+## Screenshots
+
+### Home page
+
+![AppStore home page](docs/images/home-page.jpg)
+
+### App catalog
+
+![AppStore app catalog](docs/images/apps-catalog.jpg)
+
+### App details and reviews
+
+![App details page with review form](docs/images/app-details.jpg)
+
+### My profile
+
+![AppStore profile page](docs/images/my-profile.png)
+
+### Signed-in navigation
+
+![AppStore navigation after Google sign-in](docs/images/logged-in-navbar.jpg)
+
 ## Features
 
 - Browse trending apps and the Productivity, Healthcare, and Education categories.
