@@ -1,17 +1,47 @@
 
-import React, { useState } from "react";
-import { Link } from "react-router";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router";
+import { onAuthStateChanged, signOut, updateProfile } from "firebase/auth";
+import { auth } from "../../Firebase/Firebase.init";
+import apps from "../../data/apps.json";
 
 const MyProfile = () => {
+  const navigate = useNavigate();
+  const [user, setUser] = useState(auth.currentUser);
   const [isEditing, setIsEditing] = useState(false);
+  const [profile, setProfile] = useState({ name: "", email: "", phone: "", location: "", bio: "" });
+  const [activity, setActivity] = useState({ installed: 0, reviews: 0 });
 
-  const [profile, setProfile] = useState({
-    name: "Md. Shajalal",
-    email: "shajalal@gmail.com",
-    phone: "+880 1XXXXXXXXX",
-    location: "Dhaka, Bangladesh",
-    bio: "Passionate about technology, applications and digital innovation.",
-  });
+  useEffect(() => onAuthStateChanged(auth, (currentUser) => {
+    setUser(currentUser);
+    if (!currentUser) {
+      navigate("/login", { replace: true });
+      return;
+    }
+    let saved = {};
+    try {
+      saved = JSON.parse(localStorage.getItem(`profile-${currentUser.uid}`) || "{}");
+    } catch {
+      saved = {};
+    }
+    setProfile({
+      name: saved.name ?? currentUser.displayName ?? "",
+      email: currentUser.email ?? "",
+      phone: saved.phone ?? "",
+      location: saved.location ?? "",
+      bio: saved.bio ?? "",
+    });
+    setActivity({
+      installed: apps.filter((app) => localStorage.getItem(`installed-${app.id}`) === "true").length,
+      reviews: apps.reduce((count, app) => {
+        try {
+          return count + JSON.parse(localStorage.getItem(`reviews-${app.id}`) || "[]").length;
+        } catch {
+          return count;
+        }
+      }, 0),
+    });
+  }), [navigate]);
 
   const handleChange = (e) => {
     setProfile({
@@ -22,7 +52,17 @@ const MyProfile = () => {
 
   const handleSave = (e) => {
     e.preventDefault();
+    const { name, phone, location, bio } = profile;
+    localStorage.setItem(`profile-${user.uid}`, JSON.stringify({ name, phone, location, bio }));
+    if (name.trim() && name !== user.displayName) {
+      updateProfile(user, { displayName: name.trim() }).catch((error) => console.error("Could not update account name:", error));
+    }
     setIsEditing(false);
+  };
+
+  const handleLogout = async () => {
+    await signOut(auth);
+    navigate("/login", { replace: true });
   };
 
   return (
@@ -53,9 +93,7 @@ const MyProfile = () => {
           <div className="relative z-10 flex flex-col items-center gap-6 sm:flex-row">
 
             {/* Profile Image */}
-            <div className="flex h-28 w-28 shrink-0 items-center justify-center rounded-full border-4 border-yellow-300 bg-white text-4xl font-black text-emerald-900 shadow-xl">
-              MS
-            </div>
+            {user?.photoURL ? <img src={user.photoURL} alt="Profile" className="h-28 w-28 shrink-0 rounded-full border-4 border-yellow-300 object-cover shadow-xl" /> : <div className="flex h-28 w-28 shrink-0 items-center justify-center rounded-full border-4 border-yellow-300 bg-white text-4xl font-black text-emerald-900 shadow-xl">{profile.name.charAt(0).toUpperCase()}</div>}
 
             {/* User Information */}
             <div className="flex-1 text-center sm:text-left">
@@ -91,9 +129,9 @@ const MyProfile = () => {
         <section className="grid grid-cols-1 gap-5 sm:grid-cols-3">
 
           {[
-            { icon: "📱", value: "08", label: "Installed Apps" },
-            { icon: "⭐", value: "12", label: "Reviews Submitted" },
-            { icon: "❤️", value: "05", label: "Favorite Apps" },
+            { icon: "📱", value: activity.installed, label: "Installed Apps" },
+            { icon: "⭐", value: activity.reviews, label: "Reviews Submitted" },
+            { icon: "🗓️", value: user?.metadata?.creationTime ? new Date(user.metadata.creationTime).toLocaleDateString() : "—", label: "Member Since" },
           ].map((item) => (
             <div
               key={item.label}
@@ -164,8 +202,7 @@ const MyProfile = () => {
                     type="email"
                     name="email"
                     value={profile.email}
-                    onChange={handleChange}
-                    disabled={!isEditing}
+                    disabled
                     className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 outline-none transition focus:border-emerald-600 focus:ring-2 focus:ring-emerald-100 disabled:cursor-not-allowed text-gray-500"
                   />
                 </div>
@@ -271,14 +308,11 @@ const MyProfile = () => {
                   <span className="ml-auto">→</span>
                 </Link>
 
-                <Link
-                  to="/login"
-                  className="flex items-center gap-3 rounded-xl p-3 text-red-600 transition hover:bg-red-50"
-                >
+                <button type="button" onClick={handleLogout} className="flex w-full items-center gap-3 rounded-xl p-3 text-left text-red-600 transition hover:bg-red-50">
                   <span className="text-xl">↪</span>
                   <span className="font-semibold">Logout</span>
                   <span className="ml-auto">→</span>
-                </Link>
+                </button>
 
               </div>
             </div>
